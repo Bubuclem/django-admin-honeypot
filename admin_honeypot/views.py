@@ -5,10 +5,6 @@ import django
 
 from ipware import get_client_ip
 
-from admin_honeypot.forms import HoneypotLoginForm
-from admin_honeypot.models import LoginAttempt
-from admin_honeypot.signals import honeypot
-
 from django.contrib.admin.sites import AdminSite
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.views import redirect_to_login
@@ -17,6 +13,9 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views import generic
 
+from admin_honeypot.forms import HoneypotLoginForm
+from admin_honeypot.models import LoginAttempt
+from admin_honeypot.signals import honeypot
 
 class AdminHoneypot(generic.FormView):
     '''
