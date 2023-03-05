@@ -1,3 +1,6 @@
+'''
+Urls for the admin_honeypot app.
+'''
 from admin_honeypot import views
 from django.urls import path, re_path
 

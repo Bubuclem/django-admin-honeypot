@@ -1,3 +1,6 @@
+'''
+Views for the admin_honeypot app.
+'''
 import django
 
 from ipware import get_client_ip
@@ -16,6 +19,9 @@ from django.views import generic
 
 
 class AdminHoneypot(generic.FormView):
+    '''
+    Views for fake admin login page.
+    '''
     template_name = 'admin_honeypot/login.html'
     form_class = HoneypotLoginForm
 

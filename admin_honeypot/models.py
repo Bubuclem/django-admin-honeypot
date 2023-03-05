@@ -1,9 +1,14 @@
+'''
+Models for admin_honeypot app.
+'''
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from admin_honeypot import listeners
 
-
 class LoginAttempt(models.Model):
+    '''
+    Model to store login attempts.
+    '''
     username = models.CharField(_("username"), max_length=255, blank=True, null=True)
     ip_address = models.GenericIPAddressField(_("ip address"), protocol='both', blank=True, null=True)
     session_key = models.CharField(_("session key"), max_length=50, blank=True, null=True)
@@ -12,6 +17,9 @@ class LoginAttempt(models.Model):
     path = models.TextField(_("path"), blank=True, null=True)
 
     class Meta:
+        '''
+        Meta class for LoginAttempt.
+        '''
         verbose_name = _("login attempt")
         verbose_name_plural = _("login attempts")
         ordering = ('timestamp',)

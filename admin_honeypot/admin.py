@@ -1,11 +1,16 @@
+'''
+Admin interface for the admin_honeypot app.
+'''
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from admin_honeypot.models import LoginAttempt
 
-
 class LoginAttemptAdmin(admin.ModelAdmin):
+    '''
+    Admin interface for the LoginAttempt model.
+    '''
     list_display = ('username', 'get_ip_address', 'get_session_key', 'timestamp', 'get_path')
     list_filter = ('timestamp',)
     readonly_fields = ('path', 'username', 'ip_address', 'session_key', 'user_agent')
@@ -18,14 +23,23 @@ class LoginAttemptAdmin(admin.ModelAdmin):
         return actions
 
     def get_session_key(self, instance):
+        '''
+        Get the session key for the login attempt.
+        '''
         return format_html('<a href="?session_key={sk}">{sk}</a>', sk=instance.session_key)
     get_session_key.short_description = _('Session')
 
     def get_ip_address(self, instance):
+        '''
+        Get the IP address for the login attempt.
+        '''
         return format_html('<a href="?ip_address={ip}">{ip}</a>', ip=instance.ip_address)
     get_ip_address.short_description = _('IP Address')
 
     def get_path(self, instance):
+        '''
+        Get the path for the login attempt.
+        '''
         return format_html('<a href="?path={path}">{path}</a>', path=instance.path)
     get_path.short_description = _('URL')
 
